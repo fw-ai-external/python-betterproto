@@ -165,5 +165,10 @@ require_poetry = true
 """
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+includes = [
+    "src/betterproto",
+]
