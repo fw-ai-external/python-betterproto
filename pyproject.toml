@@ -13,16 +13,15 @@ packages = [
     { include = "betterproto", from = "src" }
 ]
 requires-python = ">=3.9"
-dynamic = ["dependencies"]
+dependencies = [
+    "grpclib>=0.4.1,<0.5.0",
+    "python-dateutil>=2.8.0,<3.0.0",
+    "typing-extensions>=4.7.1,<5.0.0",
+]
 
-[tool.poetry.dependencies]
-# The Ruff version is pinned. To update it, also update it in .pre-commit-config.yaml
-ruff = { version = "~0.9.1", optional = true }
-grpclib = "^0.4.1"
-jinja2 = { version = ">=3.0.3", optional = true }
-python-dateutil = "^2.8"
-typing-extensions = "^4.7.1"
-betterproto-rust-codec = { version = "0.1.1", optional = true }
+[project.optional-dependencies]
+compiler = ["ruff~=0.9.1", "jinja2>=3.0.3"]
+rust-codec = ["betterproto-rust-codec==0.1.1"]
 
 [tool.poetry.group.dev.dependencies]
 asv = "^0.6.4"
@@ -48,10 +47,6 @@ tomlkit = ">=0.7.0"
 
 [project.scripts]
 protoc-gen-python_betterproto = "betterproto.plugin:main"
-
-[project.optional-dependencies]
-compiler = ["ruff", "jinja2"]
-rust-codec = ["betterproto-rust-codec"]
 
 [tool.ruff]
 extend-exclude = ["tests/output_*"]
